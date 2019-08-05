@@ -46,13 +46,17 @@ public class ExcelReader {
         DataFormatter dataFormatter = new DataFormatter();
 
         ArrayList<ArrayList<Object>> rows = new ArrayList<>();
+         int firstRowNumber = sheet.getFirstRowNum();
         for (Row row : sheet) {
-            ArrayList<Object> entry = new ArrayList<>();
-            for (Cell cell : row) {
-                Object cellValue = dataFormatter.formatCellValue(cell);
-                entry.add(cellValue);
+            if(row.getRowNum()>firstRowNumber) {
+                ArrayList<Object> entry = new ArrayList<>();
+                for (Cell cell : row) {
+                    Object cellValue = dataFormatter.formatCellValue(cell);
+                    entry.add(cellValue);
+                }
+
+                rows.add(entry);
             }
-            rows.add(entry);
         }
 
         return rows;
