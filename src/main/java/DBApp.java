@@ -8,7 +8,6 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DBApp {
 
@@ -32,7 +31,7 @@ public class DBApp {
 
 
         for (ArrayList<Object> record : records) {
-            Employee employee = new Employee(record.get(1).toString(), record.get(2).toString(),
+            Employee employee = new Employee(Integer.parseInt(record.get(0).toString()), record.get(1).toString(), record.get(2).toString(),
                     Integer.parseInt(record.get(3).toString()));
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
